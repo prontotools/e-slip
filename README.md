@@ -1,1 +1,1 @@
-python slip.py <file_name.csv>
+python slip.py `<file_name.csv>`
