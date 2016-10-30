@@ -1,5 +1,2 @@
-ecdsa==0.13
 flake8==3.0.4
 fpdf==1.7.2
-paramiko==1.17.2
-pycrypto==2.6.1
