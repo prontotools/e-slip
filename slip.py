@@ -9,7 +9,7 @@ import sys
 from fpdf import FPDF, HTMLMixin
 
 
-def generateHTML(r):
+def generate_html(r):
     html = """
     <b>PRONTO GROUP LTD.</b>           TAX ID: 0105551086096<br/>
     15 Rajanakarn Building 3rd, 6th and 7th Floor, Soi Pradipat 17, <br/>
@@ -76,12 +76,12 @@ def generateHTML(r):
     return html
 
 
-def write_HTML(record):
+def write_html(record):
     pdf = MyFPDF()
     pdf.add_page()  # first page
     pdf.set_font('Arial', '', 5)
 
-    html = generateHTML(record)
+    html = generate_html(record)
     pdf.image('pronto-logo-header.png', x=150, y=10, w=50)
     pdf.write_html(html)
     path = 'export/'
@@ -94,17 +94,18 @@ def write_HTML(record):
     pdf.output(output, 'F')
 
 
-def readAll(file):
-    with open(file, 'r') as f:
+def read_csv(csv_file):
+    with open(csv_file, 'r') as f:
         reader = csv.reader(f)
         next(reader, None)  # skip header
         records = list(reader)
+
     for record in records:
-        extracted = csv_extract(record)
-        write_HTML(extracted)
+        extracted = extract_to_csv(record)
+        write_html(extracted)
 
 
-def csv_extract(record):
+def extract_to_csv(record):
     period = datetime.strptime(record[0].strip(), '%m/%d/%y')
     start_date = datetime.strptime(record[5].strip(), '%m/%d/%y')
     employee_id = record[1]
@@ -161,4 +162,4 @@ class MyFPDF(FPDF, HTMLMixin):
 
 
 if __name__ == '__main__':
-    readAll(str(sys.argv[1]))
+    read_csv(str(sys.argv[1]))
