@@ -1,6 +1,6 @@
-# E-slip for Pronto Group
+# E-Slip for Pronto Group
 
 ```
-pip install -r requirement.txt
+pip install -r requirements.txt
 python slip.py <file_name.csv>
 ```
