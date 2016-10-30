@@ -79,7 +79,7 @@ def write_HTML(record):
 	path = "exported/"
         if not os.path.exists(path):
             os.makedirs(path)
-	pdf.output(path+record['employee_id']+"_"+str(date.today())+".pdf", 'F')
+	pdf.output(path+record['employee_id']+"_"+record['name']+"_"+record['period']+".pdf", 'F')
 
 def readAll(file):
 	with open(file, 'rb') as f:
