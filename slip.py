@@ -79,7 +79,8 @@ def write_HTML(record):
     path = "exported/"
     if not os.path.exists(path):
         os.makedirs(path)
-    pdf.output(path+record['employee_id']+"_"+record['name']+"_"+record['period']+".pdf", 'F')
+    pdf.output(path + record['employee_id'] + "_" 
+        + record['name'] + "_" + record['period'] + ".pdf", 'F')
 
 def readAll(file):
     with open(file, 'rb') as f:
@@ -91,15 +92,15 @@ def readAll(file):
         write_HTML(extracted)
 
 def csv_extract(record):
-    period=datetime.strptime(record[0].strip(), '%m/%d/%y')
-    start_date=datetime.strptime(record[5].strip(), '%m/%d/%y')
-    employee_id=record[1]
-    name=record[2]
-    employee_tax_id=record[7]
-    position=record[4]
-    department=record[3]
-    salary=record[25]
-    tax=record[29]
+    period = datetime.strptime(record[0].strip(), '%m/%d/%y')
+    start_date = datetime.strptime(record[5].strip(), '%m/%d/%y')
+    employee_id = record[1]
+    name = record[2]
+    employee_tax_id = record[7]
+    position = record[4]
+    department = record[3]
+    salary = record[25]
+    tax = record[29]
     social_security=record[30]
     bonus=record[28]
     other_deduct=record[31]
@@ -138,7 +139,8 @@ def csv_extract(record):
         'ytd_net_income': ytd_net_income.strip(),
         'ytd_tax': ytd_tax.strip(),
         'ytd_provident_fund': ytd_provident_fund.strip(),
-        'ytd_sso': ytd_sso.strip()}
+        'ytd_sso': ytd_sso.strip()
+    }
 
 class MyFPDF(FPDF, HTMLMixin):
     pass
