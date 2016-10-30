@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
+
+import csv
+from datetime import datetime
+import os
+import sys
+
 from fpdf import FPDF, HTMLMixin
-import csv, os, sys
-from datetime import date, datetime
+
 
 def generateHTML(r):
     html = """
@@ -58,38 +63,46 @@ def generateHTML(r):
     <td width="100%%"><i>This letter is computer-generated no signature is required</i></td>
     </tr>
     </tbody>
-    </table></br>""" % ( 
-        r['period'],r['start_date'], r['employee_id'], r['name'], 
-        r['employee_tax_id'], r['position'], r['department'], r['salary'], 
-        r['tax'], r['social_security'],r['bonus'],r['other_deduct'],
-        r['commissions'],r['provident_fund'],r['shifter'],r['bank_ac'],
-        r['net_income'],r['net_deduct'],r['net_paid'],
-        r['ytd_net_income'],r['ytd_tax'],r['ytd_provident_fund'],r['ytd_sso'])
+    </table></br>""" % (
+        r['period'], r['start_date'], r['employee_id'], r['name'],
+        r['employee_tax_id'], r['position'], r['department'], r['salary'],
+        r['tax'], r['social_security'], r['bonus'], r['other_deduct'],
+        r['commissions'], r['provident_fund'], r['shifter'], r['bank_ac'],
+        r['net_income'], r['net_deduct'], r['net_paid'],
+        r['ytd_net_income'], r['ytd_tax'], r['ytd_provident_fund'],
+        r['ytd_sso']
+    )
+
     return html
 
 
 def write_HTML(record):
-    pdf=MyFPDF()
-    #First page
-    pdf.add_page()
+    pdf = MyFPDF()
+    pdf.add_page()  # first page
     pdf.set_font('Arial', '', 5)
+
     html = generateHTML(record)
-    pdf.image('pronto-logo-header.png', x = 150, y = 10, w = 50)
+    pdf.image('pronto-logo-header.png', x=150, y=10, w=50)
     pdf.write_html(html)
-    path = "exported/"
+    path = 'export/'
+
     if not os.path.exists(path):
         os.makedirs(path)
-    pdf.output(path + record['employee_id'] + "_" 
-        + record['name'] + "_" + record['period'] + ".pdf", 'F')
+
+    output = path + record['employee_id'] + '_' + record['name'] + '_' \
+        + record['period'] + '.pdf'
+    pdf.output(output, 'F')
+
 
 def readAll(file):
-    with open(file, 'rb') as f:
+    with open(file, 'r') as f:
         reader = csv.reader(f)
-        next(reader, None) #skip header
+        next(reader, None)  # skip header
         records = list(reader)
     for record in records:
         extracted = csv_extract(record)
         write_HTML(extracted)
+
 
 def csv_extract(record):
     period = datetime.strptime(record[0].strip(), '%m/%d/%y')
@@ -101,20 +114,20 @@ def csv_extract(record):
     department = record[3]
     salary = record[25]
     tax = record[29]
-    social_security=record[30]
-    bonus=record[28]
-    other_deduct=record[31]
-    commissions=record[27]
-    provident_fund=record[32]
-    shifter=record[26]
-    bank_ac=record[6]
-    net_income=record[34]
-    net_paid=record[33]
-    net_deduct=record[35]
-    ytd_net_income=record[23]
-    ytd_tax=record[18]
-    ytd_provident_fund=record[21]
-    ytd_sso=record[19]
+    social_security = record[30]
+    bonus = record[28]
+    other_deduct = record[31]
+    commissions = record[27]
+    provident_fund = record[32]
+    shifter = record[26]
+    bank_ac = record[6]
+    net_income = record[34]
+    net_paid = record[33]
+    net_deduct = record[35]
+    ytd_net_income = record[23]
+    ytd_tax = record[18]
+    ytd_provident_fund = record[21]
+    ytd_sso = record[19]
 
     return {
         'period': datetime.strftime(period, '%d %B %Y'),
@@ -142,9 +155,10 @@ def csv_extract(record):
         'ytd_sso': ytd_sso.strip()
     }
 
+
 class MyFPDF(FPDF, HTMLMixin):
     pass
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     readAll(str(sys.argv[1]))
- 
