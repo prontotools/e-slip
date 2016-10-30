@@ -77,8 +77,8 @@ def write_HTML(record):
     pdf.image('pronto-logo-header.png', x = 150, y = 10, w = 50)
     pdf.write_html(html)
     path = "exported/"
-        if not os.path.exists(path):
-            os.makedirs(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
     pdf.output(path+record['employee_id']+"_"+record['name']+"_"+record['period']+".pdf", 'F')
 
 def readAll(file):
