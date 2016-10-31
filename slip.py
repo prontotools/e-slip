@@ -14,7 +14,7 @@ def generate_html(r):
     <b>PRONTO GROUP LTD.</b>           TAX ID: 0105551086096<br/>
     15 Rajanakarn Building 3rd, 6th and 7th Floor, Soi Pradipat 17, <br/>
     Pradipat Road, Samsennai, Phayathai, Bangkok
-    <table border=1 width="100%%">
+    <table border="1" width="100%%">
     <thead><tr>
     <th width="35%%">Period:  %s</th><th width="35%%">Start Date:  %s</th><th width="30%%">ID:  %s</th>
     </tr></thead>
@@ -27,7 +27,7 @@ def generate_html(r):
     </tr>
     <tr bgcolor="#03aced"><th width="50%%">Income</th><th width="50%%">Deduction</th></tr>
     <tr>
-    <td width="25%%" border="1">Salary</td><td width="25%%" align="right">%s</td><td width="25%%">Tax</td><td width="25%%" align="right">%s</td>
+    <td width="25%%">Salary</td><td width="25%%" align="right">%s</td><td width="25%%">Tax</td><td width="25%%" align="right">%s</td>
     </tr>
     <tr>
     <td width="25%%">Daily</td><td width="25%%" align="right">-</td><td width="25%%">Social Security</td><td width="25%%" align="right">%s</td>
@@ -36,22 +36,22 @@ def generate_html(r):
     <td width="25%%">Bonus</td><td width="25%%" align="right">%s</td><td width="25%%">Advance</td><td width="25%%" align="right">-</td>
     </tr>
     <tr>
-    <td width="25%%">Others</td><td width="25%%" align="right">-</td><td width="25%%">Fund Load/Other deduct</td><td width="25%%" align="right">%s</td>
+    <td width="25%%">Others</td><td width="25%%" align="right">-</td><td width="25%%">Fund Load/Other Deduct</td><td width="25%%" align="right">%s</td>
     </tr>
     <tr>
-    <td width="25%%" >Commission</td><td width="25%%" align="right">%s</td><td width="25%%">Provident Fund</td><td width="25%%" align="right">%s</td>
+    <td width="25%%">Commission</td><td width="25%%" align="right">%s</td><td width="25%%">Provident Fund</td><td width="25%%" align="right">%s</td>
     </tr>
     <tr>
     <td width="25%%">OT/Shifters/Others</td><td width="25%%" align="right">%s</td><td width="25%%">Remark</td><td width="25%%" align="right">-</td>
     </tr>
     <tr>
-    <td width="25%%">Kbank Acc No.</td><td width="25%%" align="right">%s</td><td width="25%%">  </td><td width="25%%">    </td>
+    <td width="25%%">KBank Acc No.</td><td width="25%%" align="right">%s</td><td width="25%%"> </td><td width="25%%"> </td>
     </tr>
     <tr>
     <th width="25%%">Gross Earning</th><th width="25%%" align="right">%s</th><th width="25%%">Total deduction</th><th width="25%%" align="right">%s</th>
     </tr>
     <tr>
-    <th width="50%%">                    </th><th width="25%%">Net Pay</th><th width="25%%" align="right">%s</th>
+    <th width="50%%"> </th><th width="25%%">Net Pay</th><th width="25%%" align="right">%s</th>
     </tr>
     <tr bgcolor="#03aced">
     <th width="25%%">Acc. Income</th><th width="25%%">Acc. Tax</th><th width="25%%">Acc. Provident Fund</th><th width="25%%">Acc. Social Security</th>
@@ -60,16 +60,32 @@ def generate_html(r):
     <th width="25%%">%s</th><th width="25%%">%s</th><th width="25%%">%s</th><th width="25%%">%s</th>
     </tr>
     <tr>
-    <td width="100%%"><i>This letter is computer-generated no signature is required</i></td>
+    <td width="100%%"><i>This letter is computer-generated and no signature is required.</i></td>
     </tr>
     </tbody>
-    </table></br>""" % (
-        r['period'], r['start_date'], r['employee_id'], r['name'],
-        r['employee_tax_id'], r['position'], r['department'], r['salary'],
-        r['tax'], r['social_security'], r['bonus'], r['other_deduct'],
-        r['commissions'], r['provident_fund'], r['shifter'], r['bank_ac'],
-        r['net_income'], r['net_deduct'], r['net_paid'],
-        r['ytd_net_income'], r['ytd_tax'], r['ytd_provident_fund'],
+    </table>""" % (
+        r['period'],
+        r['start_date'],
+        r['employee_id'],
+        r['name'],
+        r['employee_tax_id'],
+        r['position'],
+        r['department'],
+        r['salary'],
+        r['tax'],
+        r['social_security'],
+        r['bonus'],
+        r['other_deduct'],
+        r['commissions'],
+        r['provident_fund'],
+        r['shifter'],
+        r['bank_ac'],
+        r['net_income'],
+        r['net_deduct'],
+        r['net_paid'],
+        r['ytd_net_income'],
+        r['ytd_tax'],
+        r['ytd_provident_fund'],
         r['ytd_sso']
     )
 
