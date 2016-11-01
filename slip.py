@@ -122,8 +122,8 @@ def read_csv(csv_file):
 
 
 def extract_to_csv(record):
-    period = datetime.strptime(record[0].strip(), '%m/%d/%y')
-    start_date = datetime.strptime(record[5].strip(), '%m/%d/%y')
+    period = datetime.strptime(record[0].strip(), '%m/%d/%Y')
+    start_date = datetime.strptime(record[5].strip(), '%m/%d/%Y')
     employee_id = record[1]
     name = record[2]
     employee_tax_id = record[7]
