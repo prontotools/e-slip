@@ -16,7 +16,7 @@ def generate_html(r):
     Pradipat Road, Samsennai, Phayathai, Bangkok
     <table border="1" width="100%%">
     <thead><tr>
-    <th width="35%%">Period:  %s</th><th width="35%%">Start Date:  %s</th><th width="30%%">ID:  %s</th>
+    <th width="35%%">Pay Date:  %s</th><th width="35%%">Start Date:  %s</th><th width="30%%">ID:  %s</th>
     </tr></thead>
     <tbody>
     <tr>
