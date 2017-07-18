@@ -92,7 +92,7 @@ def generate_html(r):
     return html
 
 
-def write_html(record):
+def write_html(month, record):
     pdf = MyFPDF()
     pdf.add_page()  # first page
     pdf.set_font('Arial', '', 5)
@@ -105,12 +105,12 @@ def write_html(record):
     if not os.path.exists(path):
         os.makedirs(path)
 
-    output = path + record['employee_id'] + '_' + record['name'] + '_' \
-        + record['period'] + '.pdf'
+    output = path + month + '_' + record['employee_id'] + '_' \
+        + record['name'] + '_' + record['period'] + '.pdf'
     pdf.output(output, 'F')
 
 
-def read_csv(csv_file):
+def read_csv(csv_file, month='01'):
     with open(csv_file, 'r') as f:
         reader = csv.reader(f)
         next(reader, None)  # skip header
@@ -118,7 +118,7 @@ def read_csv(csv_file):
 
     for record in records:
         extracted = extract_to_csv(record)
-        write_html(extracted)
+        write_html(month, extracted)
 
 
 def extract_to_csv(record):
